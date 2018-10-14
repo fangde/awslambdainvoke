@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+        <script src='./config'></script>
+
+    </head>
+    <body>
+
+        <button>
+
+        </button>
+        
+    </body>
+
+    <script>
+    
+
+       
+
+        AWS.config.update(configure);
+
+        let ddb = new AWS.DynamoDB({
+            apiVersion: '2012-08-10'
+        });
+
+        let lambda = new AWS.Lambda({apiVersion: '2015-03-31'});
+
+        let pp={
+
+            FunctionName : 'tensor-babel-service-dev-babel',
+        InvocationType : 'RequestResponse',
+        Payload:JSON.stringify({hello:"Fangde"}),
+        LogType : 'None'
+
+        }
+
+        lambda.invoke(pp, function(error, data) {
+        if (error) {
+            prompt(error);
+        } else {
+            console.log(data)
+        }
+        });
+    </script>
+</html>
